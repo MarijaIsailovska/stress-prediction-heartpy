@@ -660,3 +660,108 @@ the dual-regime caveat.
 
 ---
 
+## Modeling — Binary Classification LOSO — 2026-07-09
+
+Script (not executed in this step): `scripts/03_train_evaluate.py`  
+Data: `data/processed/ephnogram_features.csv` (11 HRV features; `label`; LOSO groups = `subject_id`)  
+Outputs: `results/metrics/ephnogram_binary_loso.json`;
+`results/figures/confusion_matrix_[best_model].png`;
+`results/figures/per_subject_accuracy.png`
+
+### EDA-informed modeling context
+1. BPM and IBI are the strongest univariate separators (EDA Plot 1/5/10).
+2. RMSSD/SD1 show dual-regime behavior under exercise — not reliable alone.
+3. BPM–RMSSD correlation flips sign between rest and stress.
+4. Breathing rate is weakly discriminative.
+5. Class imbalance ≈ **142 rest (23%) vs 465 stress (77%)** → majority baseline
+   ≈ **77% accuracy** (always predict stress). Models must beat this baseline.
+
+### Models and hyperparameters
+
+| Model | Key hyperparameters | Why this choice |
+|-------|---------------------|-----------------|
+| Random Forest | `n_estimators=200`, `random_state=42`, `class_weight='balanced'` | Strong tabular baseline; handles nonlinear interactions and multicollinear HRV features; feature importance later (RQ3) |
+| SVM (RBF) | `C=1.0`, `gamma='scale'`, `probability=True`, `class_weight='balanced'` + `StandardScaler` in pipeline | Margin classifier for moderate-dimensional continuous features; RBF captures nonlinear boundaries in HRV space |
+| KNN | `n_neighbors=5`, `weights='distance'` + `StandardScaler` | Simple local baseline; distance weighting softens equal-vote noise |
+| Soft Voting Ensemble | RF + SVM + KNN, `voting='soft'` | Combines complementary inductive biases; soft voting uses predicted probabilities |
+
+**Evidence:** (`project-implementation`) hyperparameter defaults for the course study;
+classical ML practice for imbalanced tabular biosignal features.
+
+### Why LOSO (not random k-fold)
+- **Decision:** Leave-One-Subject-Out CV (`subject_id` as group).
+- **Justification:** Windows from the same subject share baseline HRV, fitness, and
+  recording conditions. Random splits leak subject identity into the test set and
+  inflate accuracy.
+- **References:**
+  - Gjoreski et al. (2016) — wearable stress / evaluation context
+    (**full bibliographic details [NEEDS VERIFICATION]**).
+  - Vos et al. (2023) systematic review on stress detection / generalizability
+    (**[NEEDS VERIFICATION]** of exact recommendations cited in the thesis).
+
+### Why SMOTE on the training fold only
+- **Decision:** `SMOTE(k_neighbors≤5, random_state=42)` fit on **X_train, y_train**
+  after each LOSO split; **never** applied to the held-out subject.
+- **Justification:** Oversampling the test fold would leak synthetic structure
+  derived from test labels/distribution and invalidate generalization estimates.
+- **Reference:** Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P.
+  (2002). SMOTE: Synthetic Minority Over-sampling Technique. *JAIR*, 16, 321–357.
+
+### Why `class_weight='balanced'` in addition to SMOTE
+- **Decision:** Use `class_weight='balanced'` for RF and SVM (and ensemble members)
+  **together with** train-fold SMOTE.
+- **Justification:** SMOTE addresses sample counts; class weights further penalize
+  majority-class errors during optimization — complementary under severe imbalance
+  (23/77). KNN has no class_weight; relies on SMOTE + distance weights.
+- **Reference:** He, H., & Garcia, E. A. (2009). Learning from imbalanced data.
+  *IEEE Transactions on Knowledge and Data Engineering*, 21(9), 1263–1284.
+
+### Scaling
+- StandardScaler is fit **inside** SVM/KNN (and their ensemble copies) pipelines on
+  each training fold only, then applied to that fold’s test features.
+- Random Forest is left unscaled (tree splits are scale-invariant).
+
+### Success criterion vs majority baseline
+- Always predicting STRESS yields ≈ **77%** accuracy given the current class prior.
+- Report Accuracy, F1-macro, F1-weighted, and ROC-AUC (mean ± std across LOSO folds).
+- **F1-macro** and **ROC-AUC** are more informative than accuracy under imbalance;
+  a model can beat 77% accuracy yet still fail the minority (rest) class.
+
+### Limitations (pre-run)
+- Some rest subjects contribute very few windows (EDA Plot 9) → unstable LOSO folds.
+- Dual-regime RMSSD may confuse margin/distance models unless BPM dominates.
+- Soft voting increases compute; no nested hyperparameter search in this script.
+
+**Code:** `scripts/03_train_evaluate.py`  
+**Paper section:** Methods — Model Evaluation / Results — Binary Classification
+
+---
+
+## Decision — 2026-07-09 — ROC-AUC: pooled when LOSO folds are single-class
+
+**Problem:** Per-fold `roc_auc_score` returned nan for every fold →
+`np.nanmean` raised “Mean of empty slice”.
+
+**Root cause (confirmed):** Default `SUBJECT_MAP` assigns **one subject_id per
+recording** (`S{record_id}`). Each recording has a single protocol label, so
+every LOSO test fold has **only one class** in `y_test`. ROC-AUC is undefined
+for a single-class test set (not a `predict_proba` bug).
+
+**Inventory:** 24/24 subjects are single-class (8 rest-only, 16 stress-only).
+
+**Fix (`project-implementation`):**
+1. Debug prints: per-subject class inventory before LOSO; per-fold
+   `y_test` classes / `proba_shape`.
+2. Fold AUC: set nan if `len(np.unique(y_test)) < 2` (explicit try/except).
+3. Avoid empty-slice warning when all fold AUCs are nan.
+4. Report **pooled ROC-AUC** over concatenated test predictions (both classes
+   present globally) as the table ROC-AUC when fold-wise mean is undefined.
+
+**Advantages:** Honest metrics; still reports ranking quality across the study.
+**Disadvantages:** Pooled AUC is not a mean±std over independent subject folds;
+true subject-wise AUC needs subjects with **both** rest and stress sessions
+(PhysioNet spreadsheet Subject IDs — future improvement).
+
+**Code:** `scripts/03_train_evaluate.py`  
+**Paper section:** Methods — Model Evaluation
+

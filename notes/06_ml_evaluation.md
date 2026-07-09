@@ -44,3 +44,22 @@
 
 **Code:** `src/models/classifiers.py`, `src/models/evaluation.py`, `scripts/03_train_evaluate.py`, `scripts/05_feature_importance.py`  
 **Paper section:** Methods — Model Evaluation
+
+---
+
+## Decision — 2026-07-09 — EPHNOGRAM binary LOSO script (RF / SVM / KNN / Ensemble)
+
+**Decision:** Implement RQ1 evaluation in `scripts/03_train_evaluate.py` with
+exactly four models (RF, SVM-RBF, KNN, soft Voting), LOSO on `subject_id`,
+SMOTE + (for RF/SVM) `class_weight='balanced'` on train folds only; metrics
+Accuracy / F1-macro / F1-weighted / ROC-AUC; majority baseline ≈ 77%.
+
+**Why:** Matches course requirements and EDA constraints (imbalance; BPM-driven
+separability; unreliable RMSSD-alone). Full write-up:
+`research_notes.md` § Modeling — Binary Classification LOSO — 2026-07-09.
+
+**Evidence:** (`project-implementation`) script 03; (`peer-reviewed`) Chawla 2002;
+He & Garcia 2009; Gjoreski 2016 / Vos 2023 **[NEEDS VERIFICATION]** of full cites.
+
+**Code:** `scripts/03_train_evaluate.py`  
+**Paper section:** Methods — Model Evaluation

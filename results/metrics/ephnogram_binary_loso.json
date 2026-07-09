@@ -1,0 +1,1576 @@
+{
+  "dataset": "ephnogram",
+  "n_samples": 607,
+  "n_rest": 142,
+  "n_stress": 465,
+  "n_subjects": 24,
+  "features": [
+    "bpm",
+    "ibi",
+    "sdnn",
+    "rmssd",
+    "sdsd",
+    "pnn20",
+    "pnn50",
+    "hr_mad",
+    "sd1",
+    "sd2",
+    "breathing_rate"
+  ],
+  "majority_baseline_accuracy": 0.7660626029654036,
+  "best_model_f1_macro": "Ensemble",
+  "models": [
+    {
+      "model": "Random Forest",
+      "n_folds": 24,
+      "accuracy_mean": 0.9645833333333335,
+      "accuracy_std": 0.08306380022252419,
+      "f1_macro_mean": 0.8441184580183485,
+      "f1_macro_std": 0.24365186398120328,
+      "f1_weighted_mean": 0.9799035827033639,
+      "f1_weighted_std": 0.04896709671063858,
+      "roc_auc_mean": 0.9929804634257157,
+      "roc_auc_std": NaN,
+      "roc_auc_pooled": 0.9929804634257157,
+      "roc_auc_note": "roc_auc_mean is pooled across folds (per-fold AUC undefined: each held-out subject has a single class)",
+      "confusion_matrix": [
+        [
+          132,
+          10
+        ],
+        [
+          6,
+          459
+        ]
+      ],
+      "folds": [
+        {
+          "subject": "S01",
+          "n_train": 874,
+          "n_test": 28,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S10",
+          "n_train": 930,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S11",
+          "n_train": 930,
+          "n_test": 5,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S13",
+          "n_train": 930,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.7333333333333333,
+          "f1_macro": 0.4230769230769231,
+          "f1_weighted": 0.8461538461538461,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S15",
+          "n_train": 930,
+          "n_test": 5,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S16",
+          "n_train": 930,
+          "n_test": 24,
+          "n_classes_test": 1,
+          "accuracy": 0.9583333333333334,
+          "f1_macro": 0.48936170212765956,
+          "f1_weighted": 0.9787234042553191,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S21",
+          "n_train": 930,
+          "n_test": 3,
+          "n_classes_test": 1,
+          "accuracy": 0.6666666666666666,
+          "f1_macro": 0.4,
+          "f1_weighted": 0.8000000000000002,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S22",
+          "n_train": 930,
+          "n_test": 29,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S23",
+          "n_train": 930,
+          "n_test": 16,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S25",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S27",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S29",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S30",
+          "n_train": 872,
+          "n_test": 29,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S32",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S33",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S34",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S36",
+          "n_train": 882,
+          "n_test": 24,
+          "n_classes_test": 1,
+          "accuracy": 0.9583333333333334,
+          "f1_macro": 0.48936170212765956,
+          "f1_weighted": 0.9787234042553191,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S38",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9333333333333333,
+          "f1_macro": 0.4827586206896552,
+          "f1_weighted": 0.9655172413793104,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S47",
+          "n_train": 876,
+          "n_test": 27,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S52",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9666666666666667,
+          "f1_macro": 0.4915254237288136,
+          "f1_weighted": 0.9830508474576273,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S64",
+          "n_train": 872,
+          "n_test": 29,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S66",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S67",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9333333333333333,
+          "f1_macro": 0.4827586206896552,
+          "f1_weighted": 0.9655172413793104,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S68",
+          "n_train": 874,
+          "n_test": 28,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        }
+      ],
+      "per_subject_accuracy": [
+        {
+          "subject": "S01",
+          "accuracy": 1.0,
+          "n_test": 28
+        },
+        {
+          "subject": "S10",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S11",
+          "accuracy": 1.0,
+          "n_test": 5
+        },
+        {
+          "subject": "S13",
+          "accuracy": 0.7333333333333333,
+          "n_test": 30
+        },
+        {
+          "subject": "S15",
+          "accuracy": 1.0,
+          "n_test": 5
+        },
+        {
+          "subject": "S16",
+          "accuracy": 0.9583333333333334,
+          "n_test": 24
+        },
+        {
+          "subject": "S21",
+          "accuracy": 0.6666666666666666,
+          "n_test": 3
+        },
+        {
+          "subject": "S22",
+          "accuracy": 1.0,
+          "n_test": 29
+        },
+        {
+          "subject": "S23",
+          "accuracy": 1.0,
+          "n_test": 16
+        },
+        {
+          "subject": "S25",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S27",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S29",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S30",
+          "accuracy": 1.0,
+          "n_test": 29
+        },
+        {
+          "subject": "S32",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S33",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S34",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S36",
+          "accuracy": 0.9583333333333334,
+          "n_test": 24
+        },
+        {
+          "subject": "S38",
+          "accuracy": 0.9333333333333333,
+          "n_test": 30
+        },
+        {
+          "subject": "S47",
+          "accuracy": 1.0,
+          "n_test": 27
+        },
+        {
+          "subject": "S52",
+          "accuracy": 0.9666666666666667,
+          "n_test": 30
+        },
+        {
+          "subject": "S64",
+          "accuracy": 1.0,
+          "n_test": 29
+        },
+        {
+          "subject": "S66",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S67",
+          "accuracy": 0.9333333333333333,
+          "n_test": 30
+        },
+        {
+          "subject": "S68",
+          "accuracy": 1.0,
+          "n_test": 28
+        }
+      ]
+    },
+    {
+      "model": "SVM RBF",
+      "n_folds": 24,
+      "accuracy_mean": 0.9658179012345679,
+      "accuracy_std": 0.1159195891834284,
+      "f1_macro_mean": 0.8430643333499827,
+      "f1_macro_std": 0.24735482259163935,
+      "f1_weighted_mean": 0.9777953333666319,
+      "f1_weighted_std": 0.08175450905732998,
+      "roc_auc_mean": 0.9926397092230804,
+      "roc_auc_std": NaN,
+      "roc_auc_pooled": 0.9926397092230804,
+      "roc_auc_note": "roc_auc_mean is pooled across folds (per-fold AUC undefined: each held-out subject has a single class)",
+      "confusion_matrix": [
+        [
+          127,
+          15
+        ],
+        [
+          6,
+          459
+        ]
+      ],
+      "folds": [
+        {
+          "subject": "S01",
+          "n_train": 874,
+          "n_test": 28,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S10",
+          "n_train": 930,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S11",
+          "n_train": 930,
+          "n_test": 5,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S13",
+          "n_train": 930,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9666666666666667,
+          "f1_macro": 0.4915254237288136,
+          "f1_weighted": 0.9830508474576273,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S15",
+          "n_train": 930,
+          "n_test": 5,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S16",
+          "n_train": 930,
+          "n_test": 24,
+          "n_classes_test": 1,
+          "accuracy": 0.4166666666666667,
+          "f1_macro": 0.29411764705882354,
+          "f1_weighted": 0.5882352941176471,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S21",
+          "n_train": 930,
+          "n_test": 3,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S22",
+          "n_train": 930,
+          "n_test": 29,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S23",
+          "n_train": 930,
+          "n_test": 16,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S25",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S27",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S29",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S30",
+          "n_train": 872,
+          "n_test": 29,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S32",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9666666666666667,
+          "f1_macro": 0.4915254237288136,
+          "f1_weighted": 0.9830508474576273,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S33",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9666666666666667,
+          "f1_macro": 0.4915254237288136,
+          "f1_weighted": 0.9830508474576273,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S34",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S36",
+          "n_train": 882,
+          "n_test": 24,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S38",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S47",
+          "n_train": 876,
+          "n_test": 27,
+          "n_classes_test": 1,
+          "accuracy": 0.9629629629629629,
+          "f1_macro": 0.49056603773584906,
+          "f1_weighted": 0.9811320754716981,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S52",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9666666666666667,
+          "f1_macro": 0.4915254237288136,
+          "f1_weighted": 0.9830508474576273,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S64",
+          "n_train": 872,
+          "n_test": 29,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S66",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S67",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9333333333333333,
+          "f1_macro": 0.4827586206896552,
+          "f1_weighted": 0.9655172413793104,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S68",
+          "n_train": 874,
+          "n_test": 28,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        }
+      ],
+      "per_subject_accuracy": [
+        {
+          "subject": "S01",
+          "accuracy": 1.0,
+          "n_test": 28
+        },
+        {
+          "subject": "S10",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S11",
+          "accuracy": 1.0,
+          "n_test": 5
+        },
+        {
+          "subject": "S13",
+          "accuracy": 0.9666666666666667,
+          "n_test": 30
+        },
+        {
+          "subject": "S15",
+          "accuracy": 1.0,
+          "n_test": 5
+        },
+        {
+          "subject": "S16",
+          "accuracy": 0.4166666666666667,
+          "n_test": 24
+        },
+        {
+          "subject": "S21",
+          "accuracy": 1.0,
+          "n_test": 3
+        },
+        {
+          "subject": "S22",
+          "accuracy": 1.0,
+          "n_test": 29
+        },
+        {
+          "subject": "S23",
+          "accuracy": 1.0,
+          "n_test": 16
+        },
+        {
+          "subject": "S25",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S27",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S29",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S30",
+          "accuracy": 1.0,
+          "n_test": 29
+        },
+        {
+          "subject": "S32",
+          "accuracy": 0.9666666666666667,
+          "n_test": 30
+        },
+        {
+          "subject": "S33",
+          "accuracy": 0.9666666666666667,
+          "n_test": 30
+        },
+        {
+          "subject": "S34",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S36",
+          "accuracy": 1.0,
+          "n_test": 24
+        },
+        {
+          "subject": "S38",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S47",
+          "accuracy": 0.9629629629629629,
+          "n_test": 27
+        },
+        {
+          "subject": "S52",
+          "accuracy": 0.9666666666666667,
+          "n_test": 30
+        },
+        {
+          "subject": "S64",
+          "accuracy": 1.0,
+          "n_test": 29
+        },
+        {
+          "subject": "S66",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S67",
+          "accuracy": 0.9333333333333333,
+          "n_test": 30
+        },
+        {
+          "subject": "S68",
+          "accuracy": 1.0,
+          "n_test": 28
+        }
+      ]
+    },
+    {
+      "model": "KNN",
+      "n_folds": 24,
+      "accuracy_mean": 0.9393756081615278,
+      "accuracy_std": 0.12384202866595959,
+      "f1_macro_mean": 0.7734362283128267,
+      "f1_macro_std": 0.27031361311378993,
+      "f1_weighted_mean": 0.9635391232923198,
+      "f1_weighted_std": 0.08175911380805073,
+      "roc_auc_mean": 0.9820006057852492,
+      "roc_auc_std": NaN,
+      "roc_auc_pooled": 0.9820006057852492,
+      "roc_auc_note": "roc_auc_mean is pooled across folds (per-fold AUC undefined: each held-out subject has a single class)",
+      "confusion_matrix": [
+        [
+          127,
+          15
+        ],
+        [
+          16,
+          449
+        ]
+      ],
+      "folds": [
+        {
+          "subject": "S01",
+          "n_train": 874,
+          "n_test": 28,
+          "n_classes_test": 1,
+          "accuracy": 0.9285714285714286,
+          "f1_macro": 0.48148148148148145,
+          "f1_weighted": 0.9629629629629629,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S10",
+          "n_train": 930,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S11",
+          "n_train": 930,
+          "n_test": 5,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S13",
+          "n_train": 930,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S15",
+          "n_train": 930,
+          "n_test": 5,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S16",
+          "n_train": 930,
+          "n_test": 24,
+          "n_classes_test": 1,
+          "accuracy": 0.4583333333333333,
+          "f1_macro": 0.3142857142857143,
+          "f1_weighted": 0.6285714285714286,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S21",
+          "n_train": 930,
+          "n_test": 3,
+          "n_classes_test": 1,
+          "accuracy": 0.6666666666666666,
+          "f1_macro": 0.4,
+          "f1_weighted": 0.8000000000000002,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S22",
+          "n_train": 930,
+          "n_test": 29,
+          "n_classes_test": 1,
+          "accuracy": 0.9655172413793104,
+          "f1_macro": 0.49122807017543857,
+          "f1_weighted": 0.9824561403508771,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S23",
+          "n_train": 930,
+          "n_test": 16,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S25",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S27",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S29",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S30",
+          "n_train": 872,
+          "n_test": 29,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S32",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9666666666666667,
+          "f1_macro": 0.4915254237288136,
+          "f1_weighted": 0.9830508474576273,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S33",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9666666666666667,
+          "f1_macro": 0.4915254237288136,
+          "f1_weighted": 0.9830508474576273,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S34",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S36",
+          "n_train": 882,
+          "n_test": 24,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S38",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9,
+          "f1_macro": 0.47368421052631576,
+          "f1_weighted": 0.9473684210526315,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S47",
+          "n_train": 876,
+          "n_test": 27,
+          "n_classes_test": 1,
+          "accuracy": 0.9259259259259259,
+          "f1_macro": 0.4807692307692308,
+          "f1_weighted": 0.9615384615384616,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S52",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9,
+          "f1_macro": 0.47368421052631576,
+          "f1_weighted": 0.9473684210526315,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S64",
+          "n_train": 872,
+          "n_test": 29,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S66",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S67",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.8666666666666667,
+          "f1_macro": 0.4642857142857143,
+          "f1_weighted": 0.9285714285714286,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S68",
+          "n_train": 874,
+          "n_test": 28,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        }
+      ],
+      "per_subject_accuracy": [
+        {
+          "subject": "S01",
+          "accuracy": 0.9285714285714286,
+          "n_test": 28
+        },
+        {
+          "subject": "S10",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S11",
+          "accuracy": 1.0,
+          "n_test": 5
+        },
+        {
+          "subject": "S13",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S15",
+          "accuracy": 1.0,
+          "n_test": 5
+        },
+        {
+          "subject": "S16",
+          "accuracy": 0.4583333333333333,
+          "n_test": 24
+        },
+        {
+          "subject": "S21",
+          "accuracy": 0.6666666666666666,
+          "n_test": 3
+        },
+        {
+          "subject": "S22",
+          "accuracy": 0.9655172413793104,
+          "n_test": 29
+        },
+        {
+          "subject": "S23",
+          "accuracy": 1.0,
+          "n_test": 16
+        },
+        {
+          "subject": "S25",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S27",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S29",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S30",
+          "accuracy": 1.0,
+          "n_test": 29
+        },
+        {
+          "subject": "S32",
+          "accuracy": 0.9666666666666667,
+          "n_test": 30
+        },
+        {
+          "subject": "S33",
+          "accuracy": 0.9666666666666667,
+          "n_test": 30
+        },
+        {
+          "subject": "S34",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S36",
+          "accuracy": 1.0,
+          "n_test": 24
+        },
+        {
+          "subject": "S38",
+          "accuracy": 0.9,
+          "n_test": 30
+        },
+        {
+          "subject": "S47",
+          "accuracy": 0.9259259259259259,
+          "n_test": 27
+        },
+        {
+          "subject": "S52",
+          "accuracy": 0.9,
+          "n_test": 30
+        },
+        {
+          "subject": "S64",
+          "accuracy": 1.0,
+          "n_test": 29
+        },
+        {
+          "subject": "S66",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S67",
+          "accuracy": 0.8666666666666667,
+          "n_test": 30
+        },
+        {
+          "subject": "S68",
+          "accuracy": 1.0,
+          "n_test": 28
+        }
+      ]
+    },
+    {
+      "model": "Ensemble",
+      "n_folds": 24,
+      "accuracy_mean": 0.954861111111111,
+      "accuracy_std": 0.13109926676726144,
+      "f1_macro_mean": 0.8812983463402895,
+      "f1_macro_std": 0.23396328040710374,
+      "f1_weighted_mean": 0.9709300260139123,
+      "f1_weighted_std": 0.08942735570590873,
+      "roc_auc_mean": 0.9934878085718614,
+      "roc_auc_std": NaN,
+      "roc_auc_pooled": 0.9934878085718614,
+      "roc_auc_note": "roc_auc_mean is pooled across folds (per-fold AUC undefined: each held-out subject has a single class)",
+      "confusion_matrix": [
+        [
+          127,
+          15
+        ],
+        [
+          5,
+          460
+        ]
+      ],
+      "folds": [
+        {
+          "subject": "S01",
+          "n_train": 874,
+          "n_test": 28,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S10",
+          "n_train": 930,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S11",
+          "n_train": 930,
+          "n_test": 5,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S13",
+          "n_train": 930,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S15",
+          "n_train": 930,
+          "n_test": 5,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S16",
+          "n_train": 930,
+          "n_test": 24,
+          "n_classes_test": 1,
+          "accuracy": 0.4166666666666667,
+          "f1_macro": 0.29411764705882354,
+          "f1_weighted": 0.5882352941176471,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S21",
+          "n_train": 930,
+          "n_test": 3,
+          "n_classes_test": 1,
+          "accuracy": 0.6666666666666666,
+          "f1_macro": 0.4,
+          "f1_weighted": 0.8000000000000002,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S22",
+          "n_train": 930,
+          "n_test": 29,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S23",
+          "n_train": 930,
+          "n_test": 16,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S25",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S27",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S29",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S30",
+          "n_train": 872,
+          "n_test": 29,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S32",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S33",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S34",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S36",
+          "n_train": 882,
+          "n_test": 24,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S38",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9333333333333333,
+          "f1_macro": 0.4827586206896552,
+          "f1_weighted": 0.9655172413793104,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S47",
+          "n_train": 876,
+          "n_test": 27,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S52",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9666666666666667,
+          "f1_macro": 0.4915254237288136,
+          "f1_weighted": 0.9830508474576273,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S64",
+          "n_train": 872,
+          "n_test": 29,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S66",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S67",
+          "n_train": 870,
+          "n_test": 30,
+          "n_classes_test": 1,
+          "accuracy": 0.9333333333333333,
+          "f1_macro": 0.4827586206896552,
+          "f1_weighted": 0.9655172413793104,
+          "roc_auc": NaN
+        },
+        {
+          "subject": "S68",
+          "n_train": 874,
+          "n_test": 28,
+          "n_classes_test": 1,
+          "accuracy": 1.0,
+          "f1_macro": 1.0,
+          "f1_weighted": 1.0,
+          "roc_auc": NaN
+        }
+      ],
+      "per_subject_accuracy": [
+        {
+          "subject": "S01",
+          "accuracy": 1.0,
+          "n_test": 28
+        },
+        {
+          "subject": "S10",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S11",
+          "accuracy": 1.0,
+          "n_test": 5
+        },
+        {
+          "subject": "S13",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S15",
+          "accuracy": 1.0,
+          "n_test": 5
+        },
+        {
+          "subject": "S16",
+          "accuracy": 0.4166666666666667,
+          "n_test": 24
+        },
+        {
+          "subject": "S21",
+          "accuracy": 0.6666666666666666,
+          "n_test": 3
+        },
+        {
+          "subject": "S22",
+          "accuracy": 1.0,
+          "n_test": 29
+        },
+        {
+          "subject": "S23",
+          "accuracy": 1.0,
+          "n_test": 16
+        },
+        {
+          "subject": "S25",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S27",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S29",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S30",
+          "accuracy": 1.0,
+          "n_test": 29
+        },
+        {
+          "subject": "S32",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S33",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S34",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S36",
+          "accuracy": 1.0,
+          "n_test": 24
+        },
+        {
+          "subject": "S38",
+          "accuracy": 0.9333333333333333,
+          "n_test": 30
+        },
+        {
+          "subject": "S47",
+          "accuracy": 1.0,
+          "n_test": 27
+        },
+        {
+          "subject": "S52",
+          "accuracy": 0.9666666666666667,
+          "n_test": 30
+        },
+        {
+          "subject": "S64",
+          "accuracy": 1.0,
+          "n_test": 29
+        },
+        {
+          "subject": "S66",
+          "accuracy": 1.0,
+          "n_test": 30
+        },
+        {
+          "subject": "S67",
+          "accuracy": 0.9333333333333333,
+          "n_test": 30
+        },
+        {
+          "subject": "S68",
+          "accuracy": 1.0,
+          "n_test": 28
+        }
+      ]
+    }
+  ]
+}
