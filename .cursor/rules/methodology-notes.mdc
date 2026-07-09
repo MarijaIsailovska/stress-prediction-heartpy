@@ -1,0 +1,48 @@
+---
+description: Document every methodological decision in notes/ with evidence classification
+alwaysApply: true
+---
+
+# Methodology documentation (research + engineering)
+
+Act as both research assistant and software engineering assistant for this repo.
+
+## When you make a methodological decision
+
+Document it under `notes/` (append a section or add a new dated/numbered note). Do **not** silently rewrite prior decisions in existing notes unless correcting a factual error; prefer append + cross-link.
+
+Each decision entry must include:
+
+1. **Decision** — what was chosen
+2. **Why** — rationale for this project
+3. **Advantages / Disadvantages**
+4. **Alternatives in the literature** (or state none found / needs verification)
+5. **Evidence classification** — label every claim as one of:
+   - `peer-reviewed` — cite paper with enough detail to locate it (authors, year, title or DOI/URL)
+   - `dataset-docs` — PhysioNet / dataset README, spreadsheet, paper accompanying the dataset
+   - `heartpy-docs` — HeartPy paper or library docs
+   - `project-implementation` — engineering choice in this repo (paths, APIs, skip logic, etc.)
+6. **Uncertainty** — mark `[UNVERIFIED]` or `[NEEDS VERIFICATION]` for incomplete citations or claims not checked against the source
+7. **Code linkage** — list files/functions that implement the decision
+8. **Paper section** — e.g. Methods — Signal Processing
+
+## Hard rules
+
+- Never invent references or unsupported scientific claims
+- Every preprocessing, feature extraction, or modeling change in code must have a matching notes update in the same change set
+- Prefer appending `## Decision — YYYY-MM-DD — short title` over editing old sections
+- Keep `research_notes.md` as a high-level summary; detailed Methods material lives in `notes/`
+
+## Note file map
+
+| Topic | File |
+|-------|------|
+| Index / conventions | `notes/README.md` |
+| Datasets | `notes/01_dataset_selection.md` |
+| Quality filter | `notes/02_quality_filtering.md` |
+| Labels | `notes/03_labeling.md` |
+| Signal processing | `notes/04_signal_processing.md` |
+| Features | `notes/05_feature_extraction.md` |
+| ML evaluation | `notes/06_ml_evaluation.md` |
+| Cross-sensor | `notes/07_cross_sensor.md` |
+| Data download / I/O | `notes/08_data_download.md` |

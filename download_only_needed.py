@@ -6,7 +6,7 @@ REST = [10, 11, 13, 14, 15, 16, 21, 22, 23]
 STRESS = [1, 25, 27, 29, 30, 32, 33, 34, 36, 38, 47, 52, 55, 61, 62, 64, 66, 67, 68]
 
 all_records = REST + STRESS
-dl_dir = 'data/raw/ephnogram'
+dl_dir = 'data/raw/(Get-ChildItem -Path data\raw\ephnogram -Recurse -Filter "*.dat").Count'
 wfdb_dir = os.path.join(dl_dir, 'WFDB')
 os.makedirs(wfdb_dir, exist_ok=True)
 

@@ -39,10 +39,10 @@ data/raw/wrist/**
 !data/raw/wrist/.gitkeep
 
 # Processed features & experiment outputs (regenerable)
-data/processed/**
+#data/processed/**
 !data/processed/.gitkeep
-results/figures/**
-results/metrics/**
+#results/figures/**
+#results/metrics/**
 results/models/**
 !results/figures/.gitkeep
 !results/metrics/.gitkeep

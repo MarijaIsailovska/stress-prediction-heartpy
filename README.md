@@ -15,7 +15,8 @@ University course: **Intelligent Systems**.
 | RQ3 | Which HRV features are strongest predictors regardless of sensor? |
 | EXTRA | Train on EPHNOGRAM ECG → test on Wrist PPG (cross-sensor) |
 
-Methodology decisions are documented in [`research_notes.md`](research_notes.md).
+Methodology decisions are documented in [`notes/`](notes/README.md) (detailed Methods drafts)
+and summarized in [`research_notes.md`](research_notes.md).
 
 ## Datasets
 
