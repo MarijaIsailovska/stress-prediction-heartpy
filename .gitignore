@@ -1,0 +1,63 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment / secrets
+.env
+.env.*
+*.pem
+
+# Raw PhysioNet downloads (large)
+data/raw/ephnogram/**
+data/raw/wrist/**
+!data/raw/ephnogram/.gitkeep
+!data/raw/wrist/.gitkeep
+
+# Processed features & experiment outputs (regenerable)
+data/processed/**
+!data/processed/.gitkeep
+results/figures/**
+results/metrics/**
+results/models/**
+!results/figures/.gitkeep
+!results/metrics/.gitkeep
+!results/models/.gitkeep
+
+# Model / binary artifacts
+*.joblib
+*.pkl
+*.pickle
+*.h5
+*.pt
+
+# Logs / local notes
+*.log
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
