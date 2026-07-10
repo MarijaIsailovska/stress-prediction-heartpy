@@ -765,3 +765,60 @@ true subject-wise AUC needs subjects with **both** rest and stress sessions
 **Code:** `scripts/03_train_evaluate.py`  
 **Paper section:** Methods — Model Evaluation
 
+---
+
+## Modeling Findings — Binary LOSO Results — 2026-07-10
+
+Metrics from `results/metrics/ephnogram_binary_loso.json`  
+Figures from `scripts/05_model_visualizations.py` → `results/figures/11_*.png`–`15_*.png`
+
+### Performance summary (LOSO, train-fold SMOTE)
+
+| Model | Accuracy (mean±std) | F1-macro (mean±std) | ROC-AUC (pooled) | Confusion [TN FP / FN TP] |
+|-------|---------------------|---------------------|------------------|---------------------------|
+| Random Forest | 0.965 ± 0.083 | 0.844 ± 0.244 | 0.993 | 132 / 10 / 6 / 459 |
+| SVM RBF | 0.966 ± 0.083 | 0.843 ± 0.245 | 0.993 | 127 / 15 / 6 / 459 |
+| KNN | 0.939 ± 0.117 | 0.773 ± 0.280 | 0.982 | 127 / 15 / 16 / 449 |
+| **Ensemble (best F1m)** | 0.955 ± 0.114 | **0.881 ± 0.230** | **0.993** | 127 / 15 / 5 / 460 |
+
+Majority baseline (always STRESS) ≈ **76.6%** accuracy. All models **beat** this baseline on accuracy; F1-macro remains the fairer metric under imbalance.
+
+### Finding 1 — Strong discrimination, BPM/IBI-driven
+- Pooled ROC curves are near-ceiling (AUC ≈ 0.98–0.99) for all models.
+- RF impurity importance: **bpm ≈ 0.37**, **ibi ≈ 0.34**, then pnn20 ≈ 0.08, rmssd/sd1 ≈ 0.05–0.07; breathing_rate near-bottom.
+- Aligns with EDA: rate features dominate REST vs protocol-STRESS separation (`project-implementation` + EDA notes).
+
+**Paper:** State that binary physical-stress classification is highly accurate in this cohort but is largely **heart-rate level discrimination**, not a pure autonomic “stress” biomarker.
+
+### Finding 2 — Ensemble wins F1-macro; KNN is weakest
+- Soft voting yields the best F1-macro (0.881), slightly trading accuracy vs RF/SVM.
+- KNN has more false negatives (16) and lower F1 / AUC — sensitive to the dual-regime RMSSD geometry and scale locally.
+
+**Paper:** Report Ensemble as primary result if F1-macro is the designated metric; keep RF for interpretability (importance / SHAP).
+
+### Finding 3 — Hard subjects drive F1 fold variance
+Per-subject accuracy bars show near-perfect folds for most stress subjects; largest errors on rest/low-n or atypical subjects (e.g. **S16**, **S21**, **S13** depending on model). High F1 **std** (~0.23–0.28) reflects single-class LOSO folds and heterogeneous rest quality.
+
+**Paper:** Emphasize LOSO variance and low rest-window yield for some subjects as a limitation; do not over-claim generalizability from mean accuracy alone.
+
+### Finding 4 — Confusion structure
+- Errors are mostly REST→STRESS false positives (10–15) plus few STRESS→REST false negatives (5–16).
+- Consistent with class prior and BPM overlap / rest artifact tails from EDA.
+
+### Visualizations generated
+| Figure | File | Use in paper |
+|------|------|--------------|
+| Confusion 2×2 grid | `11_confusion_matrices_grid.png` | Results |
+| Pooled ROC (4 models) | `12_roc_curves_pooled.png` | Results |
+| Per-subject accuracy | `13_per_subject_accuracy.png` | Results / Discussion |
+| F1-macro comparison | `14_f1_macro_comparison.png` | Results |
+| RF feature importance | `15_rf_feature_importance.png` | Results (RQ3 preview) |
+
+### Limitations (unchanged)
+- `subject_id` = per-recording → single-class folds; ROC reported as **pooled**.
+- Construct = protocol exertion, not operational/psych stress.
+- Near-ceiling AUC partly reflects BPM separability.
+
+**Code:** `scripts/05_model_visualizations.py`, `scripts/03_train_evaluate.py`  
+**Paper section:** Results — Binary Classification
+
