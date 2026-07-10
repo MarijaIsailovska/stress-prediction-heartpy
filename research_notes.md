@@ -822,3 +822,102 @@ Per-subject accuracy bars show near-perfect folds for most stress subjects; larg
 **Code:** `scripts/05_model_visualizations.py`, `scripts/03_train_evaluate.py`  
 **Paper section:** Results — Binary Classification
 
+
+## Feature Engineering and Selection — 2026-07-10
+
+### Engineered Features
+| Feature | Formula | Reference |
+|---------|---------|-----------|
+| sd1_sd2_ratio | SD1/SD2 | Castaldo et al. (2015); Frontiers Digital Health (2021) doi:10.3389/fdgth.2021.639444 — SD1/SD2 as Cardiac Sympathetic Index; RF ~80% stress accuracy (peer-reviewed) |
+| baevsky_proxy | HR_MAD / (RMSSD + 1e-6) | Inspired by Baevsky Stress Index (Baevsky & Chernikova 2017); Kubios HRV docs — proxy for sympathetic load, **not** identical to original Baevsky SI (project-implementation) |
+| pnn20_normalized | pNN20 / (IBI / 1000) | Task Force ESC (1996) — pNN metrics are heart-rate dependent; IBI normalization reduces that dependency (peer-reviewed) |
+
+Dataset: `data/processed/ephnogram_features.csv` → `data/processed/ephnogram_features_engineered.csv` (n=607 windows).
+
+### Feature Selection Results (LOSO RF, SMOTE train-only, class_weight=balanced)
+
+| Experiment | N features | Accuracy | F1-macro | ROC-AUC (pooled) |
+|------------|------------|----------|----------|------------------|
+| A (all 11) | 11 | 0.965±0.083 | 0.844±0.244 | 0.993 |
+| B (reduced 7) | 7 | 0.975±0.068 | 0.868±0.229 | 0.993 |
+| C (minimal 5) | 5 | 0.977±0.067 | 0.869±0.228 | 0.993 |
+| D (engineered 9) | 9 | 0.977±0.067 | 0.869±0.228 | 0.990 |
+
+**Feature sets**
+- A: bpm, ibi, sdnn, rmssd, sdsd, pnn20, pnn50, hr_mad, sd1, sd2, breathing_rate
+- B: bpm, ibi, pnn20, rmssd, sd1, hr_mad, sdnn — drop breathing_rate (~0 importance), pnn50 (redundant with pnn20), sd2 (redundant with sdnn), sdsd (redundant with rmssd)
+- C: bpm, ibi, pnn20, rmssd, sd1
+- D: bpm, ibi, sdnn, rmssd, pnn20, hr_mad, sd1_sd2_ratio, baevsky_proxy, pnn20_normalized
+
+Winner (F1-macro): **C (minimal 5)** = 0.869 (identical hard predictions to D; D has slightly lower pooled AUC 0.990 vs 0.993).
+
+Practical conclusion (threshold: F1-macro drop vs A < 0.02): **C (minimal 5)** — F1 rises vs A (+0.025), not a drop; fewest features among all sets within threshold. B/D also exceed A; engineered features did not improve over the raw top-5 set on this cohort.
+
+### Conclusion
+- **Recommended feature set for final models:** C (minimal 5) — bpm, ibi, pnn20, rmssd, sd1. Matches or exceeds the full 11-feature RF under LOSO; removing redundant/low-importance features reduces noise.
+- **Wearable deployment:** Five Time/Poincaré features are enough for binary rest vs stress on this EPHNOGRAM setup; engineered ratios (D) do not beat the minimal raw set here — useful as optional features if deployment can compute them cheaply, but not required for performance.
+- Selection rationale aligns with Kohavi & John (1997) feature subset selection and Breiman (2001) RF importance-guided pruning (peer-reviewed methodology).
+
+**Code:** `scripts/06_feature_selection.py`  
+**Metrics:** `results/metrics/feature_selection_comparison.json`
+
+### Paper section: Methods — Feature Engineering and Selection
+
+## Final Models — Optimal 5 Features — 2026-07-10
+
+**Main result section.** Feature selection (Experiment C) selected five HRV features; all four classifiers were re-run under the same LOSO + SMOTE (train-only) protocol.
+
+### Optimal feature set
+`bpm`, `ibi`, `pnn20`, `rmssd`, `sd1` (n=5)
+
+Rationale: Experiment C achieved best F1-macro among A–D (0.869) with no performance drop vs the full 11-feature set; see Feature Engineering and Selection section.
+
+### Final LOSO results
+
+| Model | Features | Accuracy | F1-macro | F1-weighted | ROC-AUC (pooled) |
+|-------|----------|----------|----------|-------------|------------------|
+| RF | 5 | 0.977±0.067 | 0.869±0.228 | 0.987±0.040 | 0.993 |
+| SVM | 5 | 0.981±0.031 | 0.828±0.243 | 0.990±0.016 | 0.994 |
+| KNN | 5 | 0.966±0.070 | 0.803±0.255 | 0.981±0.041 | 0.983 |
+| Ens | 5 | 0.972±0.070 | 0.846±0.240 | 0.984±0.041 | 0.994 |
+
+Majority-class baseline (always stress) ≈ 76.6% accuracy — all models exceed this.
+
+**Best by F1-macro:** Random Forest (0.869).  
+**Best by Accuracy / F1-weighted:** SVM RBF (Acc 0.981, F1w 0.990).  
+**Best pooled ROC-AUC:** SVM / Ensemble (0.994), RF close (0.993).
+
+### RF feature importance (5 features, SMOTE-balanced full set)
+| Feature | Importance |
+|---------|------------|
+| ibi | 0.422 |
+| bpm | 0.419 |
+| pnn20 | 0.083 |
+| sd1 | 0.038 |
+| rmssd | 0.037 |
+
+Heart-rate level (bpm/ibi) still dominates; pnn20 contributes secondary discriminative signal; sd1/rmssd are smaller but retained as physiologically motivated HRV markers.
+
+### Figures (paper Results)
+| Figure | File | Use |
+|--------|------|-----|
+| Confusion matrices 2×2 | `16_final_confusion_matrices_5features.png` | Results |
+| Pooled ROC (4 models) | `17_final_roc_curves_5features.png` | Results |
+| RF importance (5 feat.) | `18_final_rf_importance_5features.png` | Results / Discussion |
+
+### Interpretation
+- With only five features, RF remains the strongest balanced classifier (F1-macro), matching the feature-selection RF result exactly.
+- SVM slightly edges accuracy and AUC but trails RF on F1-macro (harder rest class under LOSO single-class folds).
+- Ensemble does not beat RF on F1-macro on this set; soft voting helps AUC but not minority-class balance relative to RF alone.
+- Practical takeaway for wearables: deploy RF (or SVM if maximizing accuracy/AUC) on `{bpm, ibi, pnn20, rmssd, sd1}` — no need for the full HeartPy measure vector.
+
+### Limitations (unchanged)
+- `subject_id` = per-recording → single-class LOSO folds; ROC reported as pooled.
+- Construct = protocol exertion, not operational/psych stress.
+- Near-ceiling metrics partly reflect bpm/ibi separability.
+
+**Code:** `scripts/07_final_models_5features.py`  
+**Metrics:** `results/metrics/final_models_5features.json`  
+**Importance CSV:** `results/metrics/rf_feature_importance_5features.csv`
+
+### Paper section: Results — Final Classification (Optimal Feature Set)
